@@ -30,24 +30,22 @@ void bfs(int adj[][n], int v)
     for (int i = 0; i < n; i++)
         visited[i] = 0;
 
-    int u = v;
     visited[v] = 1;
-    do
+    enQ(v);
+    printf("bfs traversal\n");
+    while (!isEmpty())
     {
-        for (int w = 0; w < n; w++)
+        int u = deQ();
+        printf("%d ", u);
+        for (int i = 0; i < n; i++)
         {
-            if (adj[u][w] == 1 && visited[w] == 0)
+            if (adj[u][i] && visited[i] == 0)
             {
-                visited[w] = 1;
-                enQ(w);
+                visited[i] = 1;
+                enQ(i);
             }
         }
-        printf("%d ", u);
-        if (isEmpty())
-            break;
-        else
-            u = deQ();
-    } while (1);
+    }
 }
 int main()
 {
